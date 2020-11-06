@@ -6,14 +6,14 @@ class Minijuego {
   PImage fondo;
   int puntaje = 0;
   PFont roboto;
-  
+
 
   Minijuego() {
-     g = new Gatito(width/5, height/5.4);  
+    g = new Gatito(width/5, height/5.4);  
     a = new Almohadon(width/5, (height/5 * 4.5));
     estado = "inicio";
     fondo = loadImage("fondo.png");
-    catz = createFont("Cute Meow.otf", 70);
+    catz = createFont("AarcoverRegular.ttf", 70);
     roboto = createFont("Roboto-Regular.ttf", 20);
     for (int i = 0; i <= 2; i++) {
       macetas_img[i] = loadImage("plant" + i + ".png");
@@ -29,8 +29,9 @@ class Minijuego {
       background(255);
       image(fondo, 0, 0);
       textFont(roboto);
+      textSize(20);
       fill(0);
-      text("puntos: " + puntaje, 20, 20);
+      text("puntos: " + puntaje, width/2, height/12);
       a.dibujar();
       a.mover();
       for (int i = 0; i < macetas.length; i++) {
@@ -40,9 +41,12 @@ class Minijuego {
       g.mover();
     }
     if (estado.equals("perdi")) {
+      musica.pause();
       background(0);
-      fill(255);
+      textFont(catz);
+      fill(random(255), random(255), random(255));
       textAlign(CENTER);
+      textSize(40);
       text("Puntaje Maximo: " + puntaje, width/2, height/2);
     }
   }
@@ -50,10 +54,12 @@ class Minijuego {
   void inicio() {
     background(0);
     textFont(catz);
-    text("Brrrreaker Cat", 100, 100);
+    textAlign(CENTER);
+    fill(random(255) , random(255), random(255) );
+    text("Brrrreaker\nCat", width/2, height/2);
     if (mousePressed) {
       estado = "juego";
-        musica.loop();
+      musica.loop();
     }
   }
 
