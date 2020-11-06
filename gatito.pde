@@ -1,0 +1,47 @@
+class Gatito {
+  int numFrames = 4;
+  PImage [] sprites = new PImage[numFrames];
+  float posx;
+  float posy;
+  float vel;
+  int frame;
+  boolean izq;
+  float tamw;
+  float acel = 1;
+
+  Gatito(float x, float y) {
+    for (int i = 0; i < sprites.length; i++) {
+      sprites[i] = loadImage("data/cat" + i + ".png");
+    }
+    posx = x;
+    posy = y;
+    vel = 2;
+    izq = false;
+    tamw = 57;  
+}
+  
+  void dibujar() {
+    frame = ((frameCount * int(acel))/20) % numFrames;
+    for (int i = 0; i < sprites.length; i++) {
+      if (i <= frame && !izq) {
+        image(sprites[int(frame%2)], posx, posy);
+      }
+      if (izq) {
+        image(sprites[int(frame%2 + 2)], posx, posy);
+      }
+    }
+  }
+
+  void mover() {
+    posx += vel * acel;
+    acel += 0.001;
+    if (posx >= 600) {
+      vel *= -1;
+      izq = true;
+    }
+    if (posx <= 100) {
+      vel *= -1;
+      izq = false;
+    }
+  }
+}
