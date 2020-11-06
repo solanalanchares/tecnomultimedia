@@ -27,6 +27,7 @@ class Minijuego {
     }
     if (estado.equals("juego")) {
       background(255);
+      fondo.resize(width, height);
       image(fondo, 0, 0);
       textFont(roboto);
       textSize(20);

@@ -35,11 +35,11 @@ class Gatito {
   void mover() {
     posx += vel * acel;
     acel += 0.001;
-    if (posx >= 600) {
+    if (posx >= (width/8)*6) {
       vel *= -1;
       izq = true;
     }
-    if (posx <= 100) {
+    if (posx <= width/8) {
       vel *= -1;
       izq = false;
     }
